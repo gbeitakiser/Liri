@@ -27,11 +27,16 @@ switch (input1) {
       break;
 
     case "spotify-this-song":
-    searchSpotify(input2);
+        if (input2 === "") {
+            searchSpotify("The Sign Ace Of Base")
+        }
+        else {
+            searchSpotify(input2);
+        }
       break;
 
     case "movie-this":
-    // searchOMDB();
+    searchOMDB(input2);
       break;
 
     case "do-what-it-says":
@@ -73,11 +78,19 @@ function searchSpotify(songName) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-      console.log("")
-      console.log("======")
-      console.log(data);
-      console.log("======")
-      console.log("")
-    //   console.log(data.tracks.items[0].artists[0].name);   // Artist(s) Name 
+        var shorten = data.tracks.items[0]
+        console.log("Artist(s) Name: " + shorten.artists[0].name);   // Artist(s) Name 
+        console.log("Song Name: " + shorten.name) // Song Name
+        console.log("Album Name: " + shorten.album.name);   // Album Name
+        console.log("Spotify URL: " + shorten.external_urls.spotify) //Spotify URL
+
+
       });
+}
+
+
+//------------------------------
+// Spotify Search
+function searchOMDB(movieName) {
+    
 }
