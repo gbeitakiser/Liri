@@ -7,6 +7,7 @@ var request = require("request");
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
+var fs = require("fs");
 
 
 
@@ -19,32 +20,41 @@ var input2 = process.argv.slice(3).join(" ");
 
 
 //==============================
-// Switch Case
+// Switch Case Function
 //==============================
-switch (input1) {
-    case "concert-this":
-    searchbandsInTown(input2);
-      break;
-
-    case "spotify-this-song":
-        if (input2 === "") {
-            searchSpotify("The Sign Ace Of Base")
+function switchCase(toUse, toCall) {
+    switch (toUse) {
+        case "concert-this":
+        searchbandsInTown(toCall);
+          break;
+    
+        case "spotify-this-song":
+            if (toCall === "") {
+                searchSpotify("The Sign Ace Of Base");
+                break;
+            }
+            else {
+                searchSpotify(toCall);
+                break;
+            }
+        
+        case "movie-this":
+        if (toCall === "") {
+            searchOMDB("Mr. Nobody");
+            break;
         }
         else {
-            searchSpotify(input2);
+            searchOMDB(toCall);
+            break;
         }
-      break;
-
-    case "movie-this":
-    searchOMDB(input2);
-      break;
-
-    case "do-what-it-says":
-    // searchMySoul();
-      break;
-
-    default:
-      console.log("Please enter a proper command. Refer to User Guide if necessary");
+    
+        case "do-what-it-says":
+        searchMySoul();
+          break;
+    
+        default:
+          console.log("Please enter a proper command. Refer to User Guide if necessary");
+    }
 }
 
 
@@ -62,6 +72,7 @@ function searchbandsInTown(artist) {
             // console.log(JSON.parse(response.body));
             var respond = JSON.parse(response.body)[0]
             var venueRespond = JSON.parse(response.body)[0].venue;
+            console.log("---------")
             console.log("Venue Name: " + venueRespond.name)
             console.log("Venue Location: " + venueRespond.city + ", " + venueRespond.country)
             // Fix Date/Time to look better
@@ -79,6 +90,7 @@ function searchSpotify(songName) {
           return console.log('Error occurred: ' + err);
         }
         var shorten = data.tracks.items[0]
+        console.log("---------")
         console.log("Artist(s) Name: " + shorten.artists[0].name);   // Artist(s) Name 
         console.log("Song Name: " + shorten.name) // Song Name
         console.log("Album Name: " + shorten.album.name);   // Album Name
@@ -109,3 +121,18 @@ function searchOMDB(movieName) {
   }
 });
 }
+
+function searchMySoul() {
+    console.log("Warning, you're about to search a random API for a random concert/song/movie...")
+    fs.readFile("random.txt", "utf8", function(error, data) {
+        if (error) {
+          return console.log(error);
+        }
+        var dataArr = data.split(",");
+        console.log(dataArr);
+        console.log("---------");
+        switchCase(dataArr[0], dataArr[1]);
+      });
+}
+
+switchCase(input1, input2);
