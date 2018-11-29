@@ -92,5 +92,20 @@ function searchSpotify(songName) {
 //------------------------------
 // Spotify Search
 function searchOMDB(movieName) {
-    
+    request("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+
+  // If the request is successful (i.e. if the response status code is 200)
+  if (!error && response.statusCode === 200) {
+    // console.log(JSON.parse(body));
+    console.log("---------")
+    console.log("This movie's title is: " + JSON.parse(body).Title);
+    console.log("This movie came out in: " + JSON.parse(body).Year);
+    console.log("IMDB rates this movie a: " + JSON.parse(body).Ratings[0].Value);
+    console.log("Rotten Tomatoes rates this movie a: " + JSON.parse(body).Ratings[1].Value);
+    console.log("Country movie was produced in: " + JSON.parse(body).Country);
+    console.log("This movie is available in: " + JSON.parse(body).Language);
+    console.log("Movie plot: " + JSON.parse(body).Plot);
+    console.log("Actors: " + JSON.parse(body).Actors);
+  }
+});
 }
