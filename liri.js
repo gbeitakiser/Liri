@@ -82,7 +82,6 @@ function searchbandsInTown(artist) {
             console.log("---------" + "\n");
             console.log("Venue Name: " + venueRespond.name); // Venue Name
             console.log("Venue Location: " + venueRespond.city + ", " + venueRespond.country); // Venue Location
-            // Fix Date/Time to look better
             var dateAndTime = moment(respond.datetime).format('L');
             console.log("Venue Date: " + dateAndTime + "\n"); // Venue Date and Time
             console.log("---------");
