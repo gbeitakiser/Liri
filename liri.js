@@ -172,7 +172,8 @@ function searchMySoul() {
         }
         else {
             var dataArr = data.split(",");
-            console.log(dataArr); // What you're about to search and where
+            console.log("Search Method: "+ dataArr[0]); // What search function you're about to use
+            console.log("Search Term: " + dataArr[1]); // What you're about to search for
             switchCase(dataArr[0], dataArr[1]); // Sends items in 'random/txt' through switchCase function for searching/writing to console
         }
     })
