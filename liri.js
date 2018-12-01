@@ -208,6 +208,8 @@ function logResponse(r1, r2, r3, r4, r5, r6, r7, r8) {
 
 
 
-//------------------------------
-// Call Searches Using User Inputs
+//=========================================================================
+// Calls Switch Case Function With User Inputs And Gets The Gears Churning!
+//=========================================================================
+
 switchCase(input1, input2);
