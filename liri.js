@@ -92,7 +92,6 @@ function switchCase(toUse, toCall) {
 //==============================
 
 
-
 //------------------------------
 // Bands In Town Search
 function searchbandsInTown(artist) {
@@ -189,7 +188,6 @@ function logSearch(searchFunction, searchTerm) {
           return console.log(err);
         }
         console.log("This search was logged in log.txt!");
-      
       })
 };
 
@@ -203,7 +201,6 @@ function logResponse(r1, r2, r3, r4, r5, r6, r7, r8) {
           return console.log(err);
         }
         console.log("This response was logged in log.txt!");
-      
       })
 };
 
@@ -212,5 +209,4 @@ function logResponse(r1, r2, r3, r4, r5, r6, r7, r8) {
 //=========================================================================
 // Calls Switch Case Function With User Inputs And Gets The Gears Churning!
 //=========================================================================
-
 switchCase(input1, input2);
